@@ -100,7 +100,7 @@ DELETE /api/transactions/:id
 ```
 
 ## 📹 Walkthrough
-👉 A Loom video walkthrough will be provided along with this repo.
+👉 A Veed video walkthrough: https://www.veed.io/view/757444ca-b8f6-4852-a8b1-06871f5a8751?panel=share
 
 ## ⚠️ Notes
 * No external libraries or frameworks were added — only the provided project resources were used.
