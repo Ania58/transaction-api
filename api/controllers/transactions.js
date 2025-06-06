@@ -113,3 +113,38 @@ export const create = (req, res) => {
     transactions.push(newTransaction);
     res.status(201).json(newTransaction);
 };
+
+
+export const update = (req, res) => {
+    const { id } = req.params;
+    const { username, transactionType, token, amount } = req.body;
+    const transaction = transactions.find(t => t.id === id);
+
+    if (!transaction) {
+        return res.status(404).json( { error: "Transaction not found" });
+    };
+
+    if (!username || typeof username !== "string") {
+        return res.status(400).json( { message: "Username is required" });
+    };
+
+    if (!["Stake", "Borrow", "Lend"].includes(transactionType)) {
+        return res.status(400).json( { error: "Invalid transaction type" });
+    };
+
+    if (!token || typeof token !== "string" || token.trim() === "") {
+        return res.status(400).json( { error: "Token mustn't be empty" });
+    };
+
+    if (typeof amount !== "number" || amount <=0  || isNaN(amount)) {
+        return res.status(400).json( { error: "Amount must be a positive number" });
+    };
+
+    transaction.username = username;
+    transaction.transactionType = transactionType;
+    transaction.token = token;
+    transaction.amount = amount;
+    transaction.date = new Date().toISOString().split("T")[0];
+
+    res.status(200).json(transaction);
+}

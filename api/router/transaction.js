@@ -7,5 +7,6 @@ const router = Router();
 router.get('/', transactions.index)
 router.get('/:id', transactions.fetchById)
 router.post('/', transactions.create)
+router.put('/:id', transactions.update)
 
 export default router;
