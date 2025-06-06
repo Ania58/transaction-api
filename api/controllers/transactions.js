@@ -148,3 +148,15 @@ export const update = (req, res) => {
 
     res.status(200).json(transaction);
 }
+
+export const remove = (req, res) => {
+    const { id } = req.params;
+    const index = transactions.findIndex(t => t.id === id);
+
+    if (index === -1) {
+        return res.status(404).json( { error: "Transaction not found" });
+    }
+
+    transactions.splice(index, 1);
+    res.status(204).send();
+}
